@@ -19,11 +19,18 @@ class Fixed{
         bool    operator>=(const Fixed& instance) const;
         bool    operator<=(const Fixed& instance) const;
         Fixed   operator+(const Fixed& instance) const;
+        Fixed   operator-(const Fixed& instance) const;
+        Fixed   operator*(const Fixed& instance) const;
+        Fixed   operator/(const Fixed& instance) const;
 
         int     getRawBits(void) const;
         void    setRawBit(int const raw);
         int     toInt(void) const;
         float   toFloat(void) const;
+        static const Fixed& min(const Fixed& a, const Fixed& b);
+        static Fixed& min(Fixed& a, Fixed& b);
+        static const Fixed& max(const Fixed& a, const Fixed& b);
+        static Fixed& max(Fixed& a, Fixed& b);
 };
 
 std::ostream&   operator<<(std::ostream& os, const Fixed& obj);
