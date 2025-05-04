@@ -4,31 +4,24 @@
 
 const int Fixed::bit = 8;
 
-Fixed::Fixed(void): _raw(0) {
-    std::cout << "Default constructor called" << std::endl;
-}
+Fixed::Fixed(void): _raw(0) {}
 
 Fixed::Fixed(const int nbr) {
-    std::cout << "Int constructor called" << std::endl; 
     _raw = nbr << Fixed::bit;
 }
 
 Fixed::Fixed(const float nbr) {
-    std::cout << "Float constructor called" << std::endl; 
     _raw = (int)roundf(nbr * (float)(1 << Fixed::bit));
 }
 
 Fixed::~Fixed() {
-    std::cout << "Destructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed& object) {
-    std::cout << "Copy constructor called" << std::endl;
     *this = object;
 }
 
 Fixed &Fixed::operator=(const Fixed& object) {
-    std::cout << "Copy assignment operator called" << std::endl;
     if (this != &object) {
         _raw = object.getRawBits();
     }
@@ -37,22 +30,22 @@ Fixed &Fixed::operator=(const Fixed& object) {
 
 bool    Fixed::operator>(const Fixed& instance) const
 {
-    return _raw > instance._raw;
+	return toFloat() > instance.toFloat();
 }
 
 bool    Fixed::operator<(const Fixed& instance) const
 {
-    return _raw < instance._raw;
+	return toFloat() < instance.toFloat();
 }
 
 bool    Fixed::operator>=(const Fixed& instance) const
 {
-    return _raw >= instance._raw;
+	return toFloat() >= instance.toFloat();
 }
 
 bool    Fixed::operator<=(const Fixed& instance) const
 {
-    return _raw <= instance._raw;
+    return toFloat() <= instance.toFloat();
 }
 
 Fixed    Fixed::operator+(const Fixed& instance) const
@@ -90,8 +83,30 @@ int Fixed::getRawBits(void) const {
 void Fixed::setRawBit(const int raw) {
     _raw = raw;
 }
+Fixed	Fixed::operator++(void)
+{
+	_raw++;
+	return (*this);
+}
+Fixed	Fixed::operator++(int)
+{
+	Fixed tmp(*this);
+	_raw++;
+	return (tmp);
+}
+Fixed	Fixed::operator--(void)
+{
+	_raw--;
+	return (*this);
+}
+Fixed	Fixed::operator--(int)
+{
+	Fixed tmp(*this);
+	_raw--;
+	return (tmp);
+}
 
-Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
 {
     if (a._raw < b._raw)
         return a;

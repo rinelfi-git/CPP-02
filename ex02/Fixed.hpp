@@ -22,6 +22,10 @@ class Fixed{
         Fixed   operator-(const Fixed& instance) const;
         Fixed   operator*(const Fixed& instance) const;
         Fixed   operator/(const Fixed& instance) const;
+        Fixed	operator++(void);
+        Fixed	operator++(int);
+        Fixed	operator--(void);
+        Fixed	operator--(int);
 
         int     getRawBits(void) const;
         void    setRawBit(int const raw);
