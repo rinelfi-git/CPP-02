@@ -5,7 +5,7 @@
 class Fixed{
     private:
         int _raw;
-        static const int bit = 8;
+        static const int bit;
     public:
         int getRawBits(void) const;
         void setRawBit(int const raw);
