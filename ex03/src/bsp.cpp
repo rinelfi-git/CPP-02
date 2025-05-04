@@ -1,22 +1,26 @@
 #include "Point.hpp"
 
-Fixed	vect_prod(const Point&a, const Point& b, const Point& x)
+int	vect_prod_sign(const Point&a, const Point& b, const Point& x)
 {
-	return (b.x() - a.x()) * (x.y() - a.y()) - (b.y() - a.y()) * (x.x() - a.x());
+	Fixed	result((b.x() - a.x()) * (x.y() - a.y()) - (b.y() - a.y()) * (x.x() - a.x()));
+	if (result.toFloat() < 0)
+		return -1;
+	if (result.toFloat() > 0)
+		return 1;
+	return 0;
 }
 
 bool	bsp( Point const a, Point const b, Point const c, Point const point)
 {
 	if (a == point || b == point || c == point)
 		return false;
-	Fixed signs[] = {
-		vect_prod(a, b, point),
-		vect_prod(b, c, point),
-		vect_prod(c, a, point),
+	int signs[] = {
+		vect_prod_sign(a, b, point),
+		vect_prod_sign(b, c, point),
+		vect_prod_sign(c, a, point),
 	};
-	if (signs[0].toFloat() < 0 && signs[1].toFloat() < 0 && signs[2].toFloat() < 0)
-		return (true);
-	if (signs[0].toFloat() > 0 && signs[1].toFloat() > 0 && signs[2].toFloat() > 0)
+	const int	sum = signs[0] + signs[1] + signs[2];
+	if (sum == 3 || sum == -3)
 		return (true);
 	return (false);
 }
