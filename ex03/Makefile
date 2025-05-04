@@ -3,7 +3,7 @@ CPPC = c++
 CPPARG = -Wall -Wextra -Werror -std=c++98
 SRC_DIR = src
 OBJ_DIR = object
-SRCs = main.cpp Fixed.cpp
+SRCs = main.cpp Fixed.cpp Point.cpp bsp.cpp
 OBJ_PATH = $(addprefix $(OBJ_DIR)/,$(SRCs:.cpp=.o))
 SRC_PATH = $(addprefix $(SRC_DIR)/,$(SRCs))
 INCLUDE_PATH = -Iinclude

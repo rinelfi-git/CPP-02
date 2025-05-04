@@ -18,6 +18,7 @@ class Fixed{
         bool    operator<(const Fixed& instance) const;
         bool    operator>=(const Fixed& instance) const;
         bool    operator<=(const Fixed& instance) const;
+        bool    operator==(const Fixed& instance) const;
         Fixed   operator+(const Fixed& instance) const;
         Fixed   operator-(const Fixed& instance) const;
         Fixed   operator*(const Fixed& instance) const;

@@ -48,6 +48,11 @@ bool    Fixed::operator<=(const Fixed& instance) const
     return toFloat() <= instance.toFloat();
 }
 
+bool    Fixed::operator==(const Fixed& instance) const
+{
+    return toFloat() == instance.toFloat();
+}
+
 Fixed    Fixed::operator+(const Fixed& instance) const
 {
     return (Fixed(toFloat() + instance.toFloat()));
