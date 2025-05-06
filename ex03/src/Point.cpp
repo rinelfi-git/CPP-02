@@ -15,8 +15,7 @@ Point::~Point()
 Point& Point::operator=(const Point& self)
 {
 	if (this != &self)
-	{
-	}
+	{}
 	return *this;
 }
 
